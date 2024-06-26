@@ -32,6 +32,10 @@ public class User {
         this.roles = roles;
     }
 
+    public User(int userId) {
+        this.userId = userId;
+    }
+    
     public int getUserId() {
         return userId;
     }

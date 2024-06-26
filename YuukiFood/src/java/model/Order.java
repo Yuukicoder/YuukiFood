@@ -11,9 +11,9 @@ import java.sql.Date;
  */
 public class Order {
     private int orderId;
-    private int userId;
+    private User user;
     private Date orderDate;
-    private float total;
+    private double total;
     private String notes;
     private int status;
     private String statusName;
@@ -21,14 +21,22 @@ public class Order {
     public Order() {
     }
 
-    public Order(int orderId, int userId, Date orderDate, float total, String notes, int status, String statusName) {
+    public Order(int orderId, User user, Date orderDate, double total, String notes, int status) {
         this.orderId = orderId;
-        this.userId = userId;
+        this.user = user;
         this.orderDate = orderDate;
         this.total = total;
         this.notes = notes;
         this.status = status;
-        this.statusName = statusName;
+        this.statusName = StatusEnum.findByCode(status).name;
+    }
+
+    public Order(int orderId, User user, Date orderDate, double total, String notes) {
+        this.orderId = orderId;
+        this.user = user;
+        this.orderDate = orderDate;
+        this.total = total;
+        this.notes = notes;
     }
 
     public int getOrderId() {
@@ -39,12 +47,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getOrderDate() {
@@ -55,11 +63,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -87,6 +95,7 @@ public class Order {
         this.statusName = statusName;
     }
 
+  
 
 
 }

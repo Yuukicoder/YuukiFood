@@ -216,5 +216,10 @@ public class ProductDAO extends DBConnect{
 
         // Print the current time
         System.out.println("abc" + currentTime);
+        ProductDAO pdao = new ProductDAO();
+       ArrayList<Product> l = pdao.getAllProduct("1", "Magnam Tiste");
+       for(Product c : l){
+           System.out.println(c.getImg());
+       }
     }
 }

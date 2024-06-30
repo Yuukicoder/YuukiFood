@@ -26,24 +26,8 @@
     </head>
     <body class="biolife-body">
 
-        <%--<jsp:include page="header.jsp"/>--%>
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
+        <jsp:include page="header.jsp"/>
 
-
-      <a href="HomePage" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Yummy</h1>
-        <span>.</span>
-      </a>
-
-    
-
-      <a class="btn-getstarted" href="Profile">Profile</a>
-
-    </div>
-  </header>
 
         <div class="page-contain checkout">
 
@@ -106,7 +90,7 @@
                                     <form action="Checkout" name="frm-login" method="post">
                                         <p class="form-row">
                                             <b>Shipping notes: </b> <input name="notes" type="text" style="width: 60%;" >
-                                            <button style="float: right; background-color:#22d5d5; " type="submit" name="btn-sbmt" class="btn">Order</button>
+                                            <button style="float: right; background-color:#d53535;color: white; " type="submit" name="btn-sbmt" class="btn">Order</button>
                                         </p>
                                     </form>
                                 </div>

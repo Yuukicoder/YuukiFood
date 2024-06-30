@@ -36,18 +36,14 @@ public class ManageProduct extends HttpServlet {
             try {
                 response.setContentType("text/html;charset=UTF-8");
                 HttpSession session = request.getSession();
-                Object object = session.getAttribute("account");
-                User u = (User) object;
-                if (u.getRoles().getRoleId() == 2) {
+               
                     ProductDAO pdao = new ProductDAO();
                     ArrayList<Product> pl = pdao.getAllProduct("", "");
                     ArrayList<Category> clist = pdao.getCategory();
                     request.setAttribute("pl", pl);
                     request.setAttribute("clist", clist);
                     request.getRequestDispatcher("managerProduct.jsp").forward(request, response);
-                } else {
-                    response.sendRedirect("404.html");
-                }
+                
             } catch (Exception e) {
                 response.sendRedirect("login");
 

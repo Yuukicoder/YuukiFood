@@ -5,9 +5,7 @@
 
 package controller;
 
-import DAO.OrderDAO;
 import DAO.ProductDAO;
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,13 +13,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
+import java.util.ArrayList;
+import model.Category;
+import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class Dashboard extends HttpServlet {
+public class ViewMenu extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,44 +33,34 @@ public class Dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         try {
             HttpSession session = request.getSession();
-            Object object = session.getAttribute("account");
-            User u = (User) object;
-            if (u.getRoles().getRoleId() == 2) {
-                ProductDAO pdao = new ProductDAO();
-                OrderDAO odao = new OrderDAO();
-                UserDAO udao = new UserDAO();
-                int numo = odao.getNumberOrder();
-                int nump = pdao.getNumberProduct("", "");
-                int numu = udao.getNumberUser();
-                double profit = odao.getTotalProfit();
-                request.setAttribute("numo", numo);
-                request.setAttribute("nump", nump);
-                request.setAttribute("numu", numu);
-                request.setAttribute("profit", profit);
-                request.getRequestDispatcher("dashboard.jsp").forward(request, response);
-
+            String categoryId = request.getParameter("categoryId") == null ? "" : request.getParameter("categoryId");
+            String search = request.getParameter("search") == null ? "" : request.getParameter("search");
+            String sort = request.getParameter("sort") == null ? "" : request.getParameter("sort");
+            search = search.trim();
+            ProductDAO pdao = new ProductDAO();
+            ArrayList<Category> clist = pdao.getCategory();
+            int totalproduct = pdao.getNumberProduct(categoryId,search);
+            int numberPage = (int) Math.ceil((double) totalproduct / 6);
+            int index;
+            String currentPage = request.getParameter("index");
+            if (currentPage == null) {
+                index = 1;
+            } else {
+                index = Integer.parseInt(currentPage);
             }
-            else if(u.getRoles().getRoleId() == 3){
-                ProductDAO pdao = new ProductDAO();
-                OrderDAO odao = new OrderDAO();
-                 int numo = odao.getNumberOrder();
-                int nump = pdao.getNumberProduct("", "");
-                double profit = odao.getTotalProfit();
-                request.setAttribute("numo", numo);
-                request.setAttribute("nump", nump);
-                request.setAttribute("profit", profit);
-                request.getRequestDispatcher("StaffDashboard.jsp").forward(request, response);
-
-            }
-            else {
-                response.sendRedirect("404.html");
-            }
+            
+            
+            
+            ArrayList<Product> plist = pdao.getProduct(categoryId, search, index,sort);
+            
+            
+            request.setAttribute("numberPage", numberPage);
+            request.setAttribute("plist", plist);
+            request.setAttribute("clist", clist);
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
         } catch (Exception e) {
-            response.sendRedirect("login");
-
         }
     } 
 

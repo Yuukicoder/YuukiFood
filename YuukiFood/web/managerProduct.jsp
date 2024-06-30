@@ -140,7 +140,7 @@
 
                                     </tr>
                                     <!-- Modal -->
-                                <div class="modal fade" id="myModal${p.getId()}" role="dialog">
+                                <div class="modal fade" id="myModal${p.getProductId()}" role="dialog">
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
@@ -151,14 +151,14 @@
                                             </div>
                                             <form action="EditProduct" method="post">
                                                 <div class="modal-body">
-                                                    <b>ID: </b><input type="text" class="form-control" name="id" value="${p.getId()}" readonly=""><br>
-                                                    <b>Name: </b><input type="text" class="form-control" value="${p.getName()}" name="name"><br>
+                                                    <b>ID: </b><input type="text" class="form-control" name="id" value="${p.getProductId()}" readonly=""><br>
+                                                    <b>Name: </b><input type="text" class="form-control" value="${p.getProductName()}" name="name"><br>
                                                     <b>Price: </b><input type="number" step="0.1" class="form-control" value="${p.getPrice()}" name="price"><br>
                                                     <b>Category: </b>
                                                     <div style="height: 50px; w30pxidth: 100%">
                                                         <select  class="form-control" style="display: block;" name="category" >
                                                             <c:forEach var="c" items="${clist}">
-                                                                <option value="${c.getId()}" ${p.getCategory().getName()==c.getName()?"selected":""} >${c.getName()} </option>
+                                                                <option value="${c.getCategoryId()}" ${p.getCategory().getCategoryName()==c.getCategoryName()?"selected":""} >${c.getCategoryName()} </option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>

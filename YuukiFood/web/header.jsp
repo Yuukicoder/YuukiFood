@@ -34,14 +34,14 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#chefs">Chefs</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="ViewHero" >Home<br></a></li>
+          <li><a href="ViewAbout">About</a></li>
+          <li><a href="ViewMenu" >Menu</a></li>
+          <li><a href="ViewEvents">Events</a></li>
+          <li><a href="ViewChefs">Chefs</a></li>
+          <li><a href="ViewGallery">Gallery</a></li>
       
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="ViewContact">Contact</a></li>
                                     <li >
                     <a href="ViewCart" class="link-to">
                         Cart 

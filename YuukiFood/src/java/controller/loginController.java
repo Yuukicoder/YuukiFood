@@ -95,6 +95,9 @@ public class loginController extends HttpServlet {
                Roles usRole = user.getRoles();
                if(usRole.getRoleId()==2)
                 response.sendRedirect("./AdminHomePage");
+               else if(usRole.getRoleId()==3){
+                                   response.sendRedirect("./StaffHomePage");
+               }
                else{
                                    response.sendRedirect("./HomePage");
 

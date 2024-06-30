@@ -104,10 +104,10 @@
 
                                         <tr class="cart_item wrap-buttons">
                                             <td class="wrap-btn-control" colspan="4">
-                                                <a class="btn back-to-shop" href="./HomePage" style="background-color: #00ffff">Back to Shop</a>
+                                                <a class="btn back-to-shop" href="./HomePage" style="background-color: #d53535">Back to Shop</a>
                                             </td>
                                             <td class="wrap-btn-control" colspan="2">
-                                                <a class="btn back-to-shop" href="./Checkout" style="background-color:#00ffff">Checkout</a>
+                                                <a class="btn back-to-shop" href="./Checkout" style="background-color:#d53535">Checkout</a>
                                             </td>
                                         </tr>
                                     </tbody>

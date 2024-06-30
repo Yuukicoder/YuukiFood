@@ -50,7 +50,7 @@
   <main class="main">
 
    <c:if test="${sessionScope['account']!=null}">
-                    <h1 style="text-align: center;">Welcome    ${sessionScope['account'].getUserName()}</h1>
+                    <h1 style="text-align: center; font-family: Roboto;">Welcome    ${sessionScope['account'].getUserName()}</h1>
                 </c:if>
     <!-- Hero Section -->
     <section id="hero" class="hero section">
@@ -58,7 +58,7 @@
       <div class="container">
         <div class="row gy-4 justify-content-center justify-content-lg-between">
           <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h1>
+            <h1 data-aos="fade-up" style="font-family: Roboto;">Enjoy Your Healthy<br>Delicious Food</h1>
             <p data-aos="fade-up" data-aos-delay="100">We are team of talented designers making websites with Bootstrap</p>
             <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
               <a href="#book-a-table" class="btn-get-started">Book a Table</a>
@@ -79,7 +79,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>About Us<br></h2>
-        <p><span>Learn More</span> <span class="description-title">About Us</span></p>
+        <p style="font-family: Roboto;"><span>Learn More</span> <span class="description-title">About Us</span></p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -225,7 +225,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Our Menu</h2>
-        <p><span>Check Our</span> <span class="description-title">Yummy Menu</span></p>
+        <p style="font-family: Roboto;"><span>Check Our</span> <span class="description-title">Yummy Menu</span></p>
       </div><!-- End Section Title -->
 
     <div class="container">
@@ -270,7 +270,7 @@
                         <ul class="products-list row"  >
                             <c:forEach var="p" items="${plist}">
 
-                                <li class="product-item col-lg-4 col-xs-6 " style=" list-style: none;flex-direction: column">
+                                <li class="product-item col-lg-4 col-xs-6 " style=" list-style: none;flex-direction: column;">
                                     <div class="contain-product layout-default ">
                                         <div class="product-thumb">
                                             <a href="./ProductDetails?pid=${p.getProductId()}" class="link-to-product" style="display: block; width: 300px; height: 300px; padding: auto;">
@@ -278,7 +278,7 @@
                                             </a>
                                         </div>
                                         <div class="info">
-                                            <h4 class="product-title" style="margin-top: 45px;"><a href="./ProductDetails?pid=${p.getProductId()}" class="pr-name"  style="color: black;">Name: ${p.getProductName()}</a></h4>
+                                            <h4 class="product-title" style="margin-top: 45px;font-family: Roboto;"><a href="./ProductDetails?pid=${p.getProductId()}" class="pr-name"  style="color: black;">Name: ${p.getProductName()}</a></h4>
                                             <div class="price">
                                                 <ins ><span class="price-amount"  style="color: black;">Price: <span class="currencySymbol">$</span >${p.getPrice()}</span></ins>
                                                 <div class="buttons">
@@ -315,7 +315,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>TESTIMONIALS</h2>
-        <p>What Are They <span class="description-title">Saying About Us</span></p>
+        <p style="font-family: Roboto;">What Are They <span class="description-title">Saying About Us</span></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -348,7 +348,7 @@
                         <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
-                      <h3>Saul Goodman</h3>
+                      <h3 >Saul Goodman</h3>
                       <h4>Ceo &amp; Founder</h4>
                       <div class="stars">
                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -521,7 +521,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>chefs</h2>
-        <p><span>Our</span> <span class="description-title">Proffesional Chefs<br></span></p>
+        <p style="font-family: Roboto;"><span>Our</span> <span class="description-title">Proffesional Chefs<br></span></p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -597,7 +597,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Book A Table</h2>
-        <p><span>Book Your</span> <span class="description-title">Stay With Us<br></span></p>
+        <p style="font-family: Roboto;"><span>Book Your</span> <span class="description-title">Stay With Us<br></span></p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -652,7 +652,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Gallery</h2>
-        <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+        <p style="font-family: Roboto;"><span>Check</span> <span class="description-title">Our Gallery</span></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -711,7 +711,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+        <p style="font-family: Roboto;"><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

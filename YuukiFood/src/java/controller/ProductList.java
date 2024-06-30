@@ -59,7 +59,7 @@ public class ProductList extends HttpServlet {
             request.setAttribute("numberPage", numberPage);
             request.setAttribute("plist", plist);
             request.setAttribute("clist", clist);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
         } catch (Exception e) {
         }
     } 

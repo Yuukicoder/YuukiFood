@@ -88,6 +88,9 @@ CREATE TABLE [dbo].[Product](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+INSERT INTO dbo.Roles(role_name) VALUES('admin')
+INSERT INTO dbo.Roles(role_name) VALUES('user')
+INSERT INTO dbo.Roles(role_name) VALUES('staff')
 INSERT INTO dbo.Users(user_name,email,password,address,gender,phone,role_id) VALUES('Yuuki','Yuukicoder@gmail.com',123456,'hoalac',0,9876543210 ,2)
 INSERT INTO dbo.Users(user_name,email,password,address,gender,phone,role_id) VALUES('Thuy','thuycute123@gmail.com',654321,'hoalac',0,12312132312 ,1)
 INSERT INTO dbo.Category(category_name) VALUES('Starters')

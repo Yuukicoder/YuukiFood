@@ -5,23 +5,18 @@
 
 package controller;
 
-import DAO.OrderDAO;
-import DAO.ProductDAO;
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author Admin
  */
-public class Dashboard extends HttpServlet {
+public class ViewChefs extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,45 +28,7 @@ public class Dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            Object object = session.getAttribute("account");
-            User u = (User) object;
-            if (u.getRoles().getRoleId() == 2) {
-                ProductDAO pdao = new ProductDAO();
-                OrderDAO odao = new OrderDAO();
-                UserDAO udao = new UserDAO();
-                int numo = odao.getNumberOrder();
-                int nump = pdao.getNumberProduct("", "");
-                int numu = udao.getNumberUser();
-                double profit = odao.getTotalProfit();
-                request.setAttribute("numo", numo);
-                request.setAttribute("nump", nump);
-                request.setAttribute("numu", numu);
-                request.setAttribute("profit", profit);
-                request.getRequestDispatcher("dashboard.jsp").forward(request, response);
-
-            }
-            else if(u.getRoles().getRoleId() == 3){
-                ProductDAO pdao = new ProductDAO();
-                OrderDAO odao = new OrderDAO();
-                 int numo = odao.getNumberOrder();
-                int nump = pdao.getNumberProduct("", "");
-                double profit = odao.getTotalProfit();
-                request.setAttribute("numo", numo);
-                request.setAttribute("nump", nump);
-                request.setAttribute("profit", profit);
-                request.getRequestDispatcher("StaffDashboard.jsp").forward(request, response);
-
-            }
-            else {
-                response.sendRedirect("404.html");
-            }
-        } catch (Exception e) {
-            response.sendRedirect("login");
-
-        }
+        request.getRequestDispatcher("Chefs.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

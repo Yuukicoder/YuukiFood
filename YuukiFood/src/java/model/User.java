@@ -21,6 +21,17 @@ public class User {
     public User() {
     }
 
+    public User(int userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+    }
+
+    public User(int userId, String userName, String address) {
+        this.userId = userId;
+        this.userName = userName;
+        this.address = address;
+    }
+
     public User(int userId, String userName, String email, String password, String address, Boolean gender, String phone, Roles roles) {
         this.userId = userId;
         this.userName = userName;

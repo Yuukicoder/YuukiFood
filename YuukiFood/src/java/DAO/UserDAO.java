@@ -155,7 +155,7 @@ public class UserDAO extends DBConnect {
             System.out.println(user.getUserName());
 
         }
-        System.out.println(u.getUserByEmail("thuycute123@gmail.com").getUserName());
+        System.out.println(u.getUserByEmail("thuycute123@gmail.com").getUserId());
 
     }
 }

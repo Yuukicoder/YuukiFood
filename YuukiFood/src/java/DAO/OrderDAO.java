@@ -12,6 +12,38 @@ import model.*;
  * @author Admin
  */
 public class OrderDAO extends DBConnect{
+    public static void main(String[] args) {
+        OrderDAO o = new OrderDAO();
+//        System.out.println(o.getAllOrderDetailByoId(1));
+//        User u = new User(8);
+//    ArrayList<Order> ao = o.getAllOrderByuId(2, "2024-07-02", "2024-07-04");
+//        for (Order order : ao) {
+//            System.out.println(order.getOrderId());
+//                        System.out.println(order.getOrderDate());
+//            System.out.println(order.getUser().getUserId());
+//            
+//            System.out.println(order.getUser().getUserName());
+//
+//        }
+          ArrayList<Order> ai = o.getAllOrder(2, "2024-07-02", "2024-07-04");
+        for (Order order : ai) {
+            System.out.println(order.getOrderId());
+                        System.out.println(order.getOrderDate());
+            System.out.println(order.getUser().getUserId());
+                        System.out.println(order.getTotal());
+
+            System.out.println(order.getUser().getUserName());
+            System.out.println(order.getUser().getAddress());
+
+        }
+//          ArrayList<OrderDetail> ai = o.getAllOrderDetailByoId(1);
+//        for (OrderDetail orderd : ai) {
+//            System.out.println(orderd.getProduct().getProductName());
+//        }
+//        System.out.println(o.getAllOrderByuId(2, "2024-07-02", "2024-07-04"));
+//                System.out.println(o.getAllOrder("8", "2024-07-02", "2024-07-04"));
+
+    }
 //    ===================================== insertOrder ======================================
      public void insertOrder(User u, Cart cart, String notes) {
         PreparedStatement ps = null;
@@ -53,50 +85,60 @@ public class OrderDAO extends DBConnect{
         }
     }
 //     ========================================== getAllOrderByUserId ==============================
-         public ArrayList<Order> getAllOrderByuId(int uid, String fdate, String tdate) {
+       public ArrayList<Order> getAllOrderByuId(int uid, String fdate, String tdate) {
+    ArrayList<Order> ol = new ArrayList<>();
+    String sql = "SELECT o.order_id, o.user_id, o.order_date, u.user_name " +
+                 "FROM [Order] o " +
+                 "JOIN [Users] u ON o.user_id = u.user_id " +
+                 "WHERE o.user_id = ? AND o.order_date BETWEEN ? AND ?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, uid);
+        ps.setString(2, fdate);
+        ps.setString(3, tdate);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            User user = new User(rs.getInt("user_id"), rs.getString("user_name"));
+            Order order = new Order(rs.getInt("order_id"), user, rs.getDate("order_date"));
+            ol.add(order);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Xử lý ngoại lệ hoặc in ra thông báo lỗi nếu cần
+    }
+    return ol;
+}
+
+//         =================================== getAllOrder ================================
+             public ArrayList<Order> getAllOrder(int uid, String fdate, String tdate) {
+//        if (fdate.isEmpty()) {
+//            fdate = "1990-01-01";
+//        }
+//          if (tdate.isEmpty()) {
+//            tdate = "2990-01-01";
+//        }
         ArrayList<Order> ol = new ArrayList<>();
-        String sql = "  select * from [Order] where user_id = ? and [order_date] between ? and ?";
+        String sql = "SELECT * \n" +
+"                 FROM [Order] o  \n" +
+"                 JOIN [Users] u ON o.user_id = u.user_id \n" +
+"                 WHERE o.user_id = ? AND o.order_date BETWEEN ? AND ?";
+//        if (!uid.isEmpty()) {
+//            sql = sql + " and user_id = ? ";
+//        }
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, uid);
+                    ps.setInt(1, uid);
+
             ps.setString(2, fdate);
             ps.setString(3, tdate);
+//            if (!uid.isEmpty()) {
+//                ps.setString(3, uid);
+//            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ol.add(new Order(rs.getInt(1),
-                        new User(rs.getInt(2)),
-                        rs.getDate(3),
-                        rs.getDouble(4),
-                        rs.getString(5),
-                        rs.getInt(6)));
-            }
-        } catch (Exception e) {
-        }
-        return ol;
-    }
-//         =================================== getAllOrder ================================
-             public ArrayList<Order> getAllOrder(String uid, String fdate, String tdate) {
-        if (fdate.isEmpty()) {
-            fdate = "1990-01-01";
-        }
-          if (tdate.isEmpty()) {
-            tdate = "2990-01-01";
-        }
-        ArrayList<Order> ol = new ArrayList<>();
-        String sql = "  select * from [Order] where [order_date] between ? and ? ";
-        if (!uid.isEmpty()) {
-            sql = sql + " and user_id = ? ";
-        }
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, fdate);
-            ps.setString(2, tdate);
-            if (!uid.isEmpty()) {
-                ps.setString(3, uid);
-            }
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                ol.add(new Order(rs.getInt(1), new User(rs.getInt(2)), rs.getDate(3), rs.getDouble(4), rs.getString(5), rs.getInt(6)));
+                            User user = new User(rs.getInt("user_id"), rs.getString("user_name"),rs.getString("address"));
+                Order o = new Order(uid, user, rs.getDate(3), rs.getDouble("total"), rs.getString("notes"));
+                ol.add(o);
             }
         } catch (Exception e) {
         }

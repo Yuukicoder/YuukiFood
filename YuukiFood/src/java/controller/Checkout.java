@@ -79,12 +79,26 @@ public class Checkout extends HttpServlet {
         Object object = session.getAttribute("account");
         Object object1 = session.getAttribute("cart");
         String notes = request.getParameter("notes");
+        if (object == null || object1 == null) {
+        // Log lỗi và chuyển hướng người dùng về trang lỗi hoặc trang giỏ hàng
+        System.err.println("Tài khoản hoặc giỏ hàng bị null");
+        response.sendRedirect("cart");
+        return;
+    }
         User u = (User) object;
         Cart cart = (Cart) object1;
         OrderDAO odao = new OrderDAO();
+        try {
         odao.insertOrder(u, cart, notes);
         session.removeAttribute("cart");
         response.sendRedirect("HomePage");
+    } catch (Exception e) {
+        // Log lỗi chi tiết
+        e.printStackTrace();
+        // Hiển thị thông báo lỗi cho người dùng
+        request.setAttribute("errorMessage", "Không thể xử lý đơn hàng. Vui lòng thử lại sau.");
+        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+    }
     }
 
     /** 

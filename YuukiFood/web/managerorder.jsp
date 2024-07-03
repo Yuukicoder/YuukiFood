@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="assets/css/slick.min.css">
         <!--<link rel="stylesheet" href="assets/css/style.css">-->
         <link rel="stylesheet" href="assets/css/main-color.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
 
@@ -100,7 +101,7 @@
                                 <th class="product-price">Order Date</th>
                                 <th class="product-quantity">Total Bill</th>
                                 <th class="product-subtotal">Address</th>
-                                <th class="product-subtotal">Status</th>
+                                <th class="product-subtotal">Note</th>
                                 <th class="product-subtotal">Details</th>
                                 <th class="product-subtotal">Action</th>
 
@@ -119,19 +120,21 @@
                                         ${o.getTotal()}
 
                                     </td>
+                                     <td class="product-quantity" >
+                                        ${o.getUser().getAddress()}
+
+                                    </td>
                                     <td class="product-subtotal" >
                                         ${o.getNotes()}
                                     </td>
-                                    <td class="product-subtotal" >
-                                        ${o.getStatusName()}
-                                    </td>
+
                                     <td class="product-subtotal" >
                                         <a href="./OrderDetails?oid=${o.getOrderId()}">Details</a>
                                     </td>
                                     <td class="product-subtotal" >
-                                        <c:if test="${o.getStatusName()=='Wait'||o.getStatusName()=='Done'}">
+                                        <%--<c:if test="${o.getStatusName()=='Wait'||o.getStatusName()=='Done'}">--%>
                                             <a href="./CancelOrder?oid=${o.getOrderId()}" class="btn btn-danger">Cancel order</a>
-                                        </c:if>
+                                        <%--</c:if>--%>
                                     </td>
                                 </tr>
                             </c:forEach>

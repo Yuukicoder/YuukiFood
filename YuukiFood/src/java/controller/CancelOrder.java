@@ -6,23 +6,18 @@
 package controller;
 
 import DAO.OrderDAO;
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Order;
-import model.User;
 
 /**
  *
  * @author Admin
  */
-public class ManagerOrder extends HttpServlet {
+public class CancelOrder extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +34,10 @@ public class ManagerOrder extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManagerOrder</title>");  
+            out.println("<title>Servlet CancelOrder</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManagerOrder at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CancelOrder at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,26 +54,10 @@ public class ManagerOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-        try {
-            String uid = request.getParameter("uid") == null ? "1" : request.getParameter("uid");
-            String fdate = request.getParameter("fdate") == null ? "1920-05-05" : request.getParameter("fdate");
-            String tdate = request.getParameter("tdate") == null ? "3020-05-05" : request.getParameter("tdate");
-            OrderDAO odao = new OrderDAO();
-            HttpSession session = request.getSession();
-
-            Object object = session.getAttribute("account");
-            User u = (User) object;
-            ArrayList<Order> ol = odao.getAllOrder(Integer.parseInt(uid), fdate, tdate);
-            UserDAO udao = new UserDAO();
-            ArrayList<User> userList = udao.getAllUser();
-            request.setAttribute("pl", userList);
-            request.setAttribute("ol", ol);
-//        response.getWriter().println(u.getId());
-            request.getRequestDispatcher("managerorder.jsp").forward(request, response);
-        } catch (Exception e) {
-            response.getWriter().print(e);
-        }
+        int oid = Integer.valueOf(request.getParameter("oid"));
+        OrderDAO odao = new OrderDAO();
+        odao.updateStatusOrder(4, oid);
+        response.sendRedirect("MyOrder");   
     } 
 
     /** 

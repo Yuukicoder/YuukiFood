@@ -6,23 +6,20 @@
 package controller;
 
 import DAO.OrderDAO;
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import model.Order;
-import model.User;
+import model.OrderDetail;
 
 /**
  *
  * @author Admin
  */
-public class ManagerOrder extends HttpServlet {
+public class OrderDetails extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,20 +29,14 @@ public class ManagerOrder extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManagerOrder</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManagerOrder at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int oid = Integer.valueOf(request.getParameter("oid"));
+        OrderDAO odao = new OrderDAO();
+        ArrayList<OrderDetail> odl = odao.getAllOrderDetailByoId(oid);
+        request.setAttribute("odl", odl);
+        
+        request.getRequestDispatcher("orderdetails.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,26 +50,7 @@ public class ManagerOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-        try {
-            String uid = request.getParameter("uid") == null ? "1" : request.getParameter("uid");
-            String fdate = request.getParameter("fdate") == null ? "1920-05-05" : request.getParameter("fdate");
-            String tdate = request.getParameter("tdate") == null ? "3020-05-05" : request.getParameter("tdate");
-            OrderDAO odao = new OrderDAO();
-            HttpSession session = request.getSession();
-
-            Object object = session.getAttribute("account");
-            User u = (User) object;
-            ArrayList<Order> ol = odao.getAllOrder(Integer.parseInt(uid), fdate, tdate);
-            UserDAO udao = new UserDAO();
-            ArrayList<User> userList = udao.getAllUser();
-            request.setAttribute("pl", userList);
-            request.setAttribute("ol", ol);
-//        response.getWriter().println(u.getId());
-            request.getRequestDispatcher("managerorder.jsp").forward(request, response);
-        } catch (Exception e) {
-            response.getWriter().print(e);
-        }
+        processRequest(request, response);
     } 
 
     /** 

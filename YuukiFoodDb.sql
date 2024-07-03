@@ -1,5 +1,6 @@
 --Create database YuukiFood
 --Use YuukiFood
+Drop TAble Users
 Create Table Users(
 [user_id] [int] IDENTITY(1,1) NOT NULL,
 	[user_name] [nvarchar](50) NULL,
@@ -18,6 +19,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+Drop Table dbo.Roles
 CREATE TABLE [dbo].[Roles](
 	[role_id] [int] IDENTITY(1,1) NOT NULL,
 	[role_name] [nvarchar](50) NULL,
@@ -88,11 +90,13 @@ CREATE TABLE [dbo].[Product](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-INSERT INTO dbo.Roles(role_name) VALUES('admin')
 INSERT INTO dbo.Roles(role_name) VALUES('user')
+INSERT INTO dbo.Roles(role_name) VALUES('admin')
 INSERT INTO dbo.Roles(role_name) VALUES('staff')
 INSERT INTO dbo.Users(user_name,email,password,address,gender,phone,role_id) VALUES('Yuuki','Yuukicoder@gmail.com',123456,'hoalac',0,9876543210 ,2)
 INSERT INTO dbo.Users(user_name,email,password,address,gender,phone,role_id) VALUES('Thuy','thuycute123@gmail.com',654321,'hoalac',0,12312132312 ,1)
+INSERT INTO dbo.Users(user_name,email,password,address,gender,phone,role_id) VALUES('An','binhan1234@gmail.com',212121,'hoalac',0,12312132312 ,3)
+
 INSERT INTO dbo.Category(category_name) VALUES('Starters')
 INSERT INTO dbo.Category(category_name) VALUES('Breakfast')
 INSERT INTO dbo.Category(category_name) VALUES('Lunch')

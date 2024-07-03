@@ -166,6 +166,18 @@
         <servlet-name>DeleteProduct</servlet-name>
         <servlet-class>controller.DeleteProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderDetails</servlet-name>
+        <servlet-class>controller.OrderDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelOrder</servlet-name>
+        <servlet-class>controller.CancelOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyOrder</servlet-name>
+        <servlet-class>controller.MyOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -293,5 +305,17 @@
     <servlet-mapping>
         <servlet-name>DeleteProduct</servlet-name>
         <url-pattern>/DeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetails</servlet-name>
+        <url-pattern>/OrderDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelOrder</servlet-name>
+        <url-pattern>/CancelOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyOrder</servlet-name>
+        <url-pattern>/MyOrder</url-pattern>
     </servlet-mapping>
 </web-app>

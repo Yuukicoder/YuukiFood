@@ -21,6 +21,12 @@ public class Order {
     public Order() {
     }
 
+    public Order(int orderId, User user, Date orderDate) {
+        this.orderId = orderId;
+        this.user = user;
+        this.orderDate = orderDate;
+    }
+
     public Order(int orderId, User user, Date orderDate, double total, String notes, int status) {
         this.orderId = orderId;
         this.user = user;

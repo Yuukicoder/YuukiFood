@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,13 @@ public class Cart {
     private float totalPrice;
     private List<CartItem> items;
 
-    public Cart() {
+public Cart() {
+    this.items = new ArrayList<>();
+}
+
+
+    public Cart(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Cart(int id, int userId, float totalPrice, List<CartItem> items) {

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.*;
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -25,7 +27,7 @@ public class OrderDAO extends DBConnect{
 //            System.out.println(order.getUser().getUserName());
 //
 //        }
-          ArrayList<Order> ai = o.getAllOrder(2, "2024-07-02", "2024-07-04");
+          ArrayList<Order> ai = o.getAllOrder(1, "2024-07-02", "2024-07-04");
         for (Order order : ai) {
             System.out.println(order.getOrderId());
                         System.out.println(order.getOrderDate());
@@ -34,6 +36,7 @@ public class OrderDAO extends DBConnect{
 
             System.out.println(order.getUser().getUserName());
             System.out.println(order.getUser().getAddress());
+                        System.out.println(order.getNotes());
 
         }
 //          ArrayList<OrderDetail> ai = o.getAllOrderDetailByoId(1);
@@ -42,23 +45,30 @@ public class OrderDAO extends DBConnect{
 //        }
 //        System.out.println(o.getAllOrderByuId(2, "2024-07-02", "2024-07-04"));
 //                System.out.println(o.getAllOrder("8", "2024-07-02", "2024-07-04"));
-
+            User u = new User(1);
+            Cart cart = new Cart(200);
+         
+        o.insertOrder(u, cart, "hello2");
     }
 //    ===================================== insertOrder ======================================
      public void insertOrder(User u, Cart cart, String notes) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+        LocalDate curDate = LocalDate.now();
+        String date = curDate.toString();
         try {
-            String sql = "insert into [Order] ([user_id],[order_date],[total],[notes],[status]) values (?,GETDATE(), ?, ?,1)";
-            ps = connection.prepareStatement(sql);
+            String sql = "insert into [Order] ([user_id],[order_date],[total],[notes]) values (?,?, ?, ?)";
+             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, u.getUserId());
-            ps.setDouble(2, cart.getTotalMoney());
-            ps.setString(3, notes);
+            ps.setString(2,date);
+            ps.setDouble(3, cart.getTotalMoney());
+            ps.setString(4, notes);
+//            ps.setInt(5, 1);
             ps.executeUpdate();
 
             String sql1 = "select top 1 order_id from [Order] order by order_id desc";
             ps = connection.prepareStatement(sql1);
-            rs = ps.executeQuery();
+           ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 int oid = rs.getInt(1);
@@ -82,6 +92,7 @@ public class OrderDAO extends DBConnect{
             }
 
         } catch (Exception e) {
+             e.printStackTrace();
         }
     }
 //     ========================================== getAllOrderByUserId ==============================

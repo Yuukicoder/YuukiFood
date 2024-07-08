@@ -26,8 +26,8 @@ public class DBConnect {
         // For example : StudentDBContext extends DBContext , 
         //where StudentDBContext is located in dal package, 
         try {
-            String user = "se1821";
-            String pass = "123";
+            String user = "sa";
+            String pass = "12345";
             String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=YuukiFood;encrypt=false";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);

@@ -32,7 +32,8 @@ public class Pay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
+        try {
             int user_id = Integer.parseInt(request.getParameter("pid"));
             out.print("User ID: " + user_id + "<br>");
 
@@ -52,14 +53,14 @@ public class Pay extends HttpServlet {
                 int quantity = listBill.get(i).getQuantity();
                 billDAO.addStatistics(order_id, product, price, quantity);
 //                billDAO.deleteOrder(order_id);
-                
+                billDAO.deleteOrderDetail(listBill.get(i).getOrder_id());
             }
-            billDAO.deleteOrderDetail(listBill.get(0).getOrder_id());
+            request.getRequestDispatcher("ManagerOrder").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid user ID");
+            request.getRequestDispatcher("ManagerOrder").forward(request, response);
         } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request");
+            request.getRequestDispatcher("ManagerOrder").forward(request, response);
         }
         request.getRequestDispatcher("ManagerOrder").forward(request, response);
     }

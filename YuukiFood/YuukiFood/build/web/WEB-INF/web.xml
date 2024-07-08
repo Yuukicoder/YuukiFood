@@ -190,6 +190,10 @@
         <servlet-name>UpAndDown</servlet-name>
         <servlet-class>controller.UpAndDown</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProduct</servlet-name>
+        <servlet-class>controller.EditProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -341,5 +345,9 @@
     <servlet-mapping>
         <servlet-name>UpAndDown</servlet-name>
         <url-pattern>/UpAndDown</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProduct</servlet-name>
+        <url-pattern>/EditProduct</url-pattern>
     </servlet-mapping>
 </web-app>

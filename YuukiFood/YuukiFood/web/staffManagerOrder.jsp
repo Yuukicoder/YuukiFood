@@ -58,29 +58,20 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alignment-example" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <a class="navbar-brand" href="AdminHomePage">Yummy</a>
+                    <a class="navbar-brand" href="StaffHomePage">Yummy</a>
                 </div>
                 <!-- COLLAPSIBLE NAVBAR -->
                 <div class="collapse navbar-collapse" id="alignment-example">
 
                     <!-- Links -->
                     <ul class="nav navbar-nav">
-                        <li >
-                            <a href="Dashboard" class="nav-link" style="font-size: 20px;">Dashboard</a>
-                        </li>
-                        <c:if test="${sessionScope.account.roles.roleId == 2}">
-                            <li >
-                                <a style="text-decoration: none;" href="ManagerUser"> Manage User</a>
-                            </li>
-                        </c:if>
+                       
+
                         <li >
                             <a style="text-decoration: none;" href="ManagerProduct"> Manage Product</a>
                         </li>
                         <li >
                             <a style="text-decoration: none;" href="ManagerOrder"> Manage Order</a>
-                        </li>
-                         <li >
-                            <a style="text-decoration: none;" href="Statistics"> Statistic</a>
                         </li>
                         <li >
                             <a style="text-decoration: none;" href="CategoryManager"> Manage Category</a>

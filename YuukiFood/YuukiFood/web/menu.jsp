@@ -253,6 +253,12 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="YuukiFood_chat"
+  agent-id="038a5277-6067-4e77-ad66-8868973dceea"
+  language-code="en"
+></df-messenger>
 </body>
 </html>

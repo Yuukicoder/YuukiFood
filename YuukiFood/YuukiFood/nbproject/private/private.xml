@@ -3,25 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/Dashboard.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/ViewOrdered.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/DAO/OrderDAO.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/managerorder.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/EditStatus.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/DAO/BillDAO.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/manageruser.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/ManagerOrder.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/ViewCart.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/DAO/DBConnect.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/ViewOrdered.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/DAO/MD5.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/cart.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/model/Bills.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/menu.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/DAO/OrderDetailsDAO.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/src/java/controller/AddToCart.java</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/StaffDashboard.jsp</file>
-            <file>file:/C:/Users/84777/Documents/Zalo%20Received%20Files/YuukiFood%20(1)/YuukiFood/web/dashboard.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/staffHome.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/home.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/staffManagerCategory.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/StaffDashboard.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/DBConnect.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/adminHome.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/UpAndDown.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/CategoryManager.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ViewCart.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/staffManagerProduct.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/StaffHomePage.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/AddToCart.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/userHomePage.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ManagerOrder.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/staffManagerOrder.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/dashboard.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/cart.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/EditProduct.java</file>
         </group>
     </open-files>
 </project-private>

@@ -102,4 +102,15 @@ public class Cart {
         }
         return t;
     }
+    // ====================== updateQuantity ======================
+    public void updateQuantity(int productId, int quantity) {
+        CartItem item = getItemById(productId);
+        if (item != null) {
+            if (quantity > 0) {
+                item.setQuantity(quantity);
+            } else {
+                items.remove(item);
+            }
+        }
+    }
 }

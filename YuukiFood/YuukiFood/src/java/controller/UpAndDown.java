@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Cart;
 
 /**
  *
@@ -33,7 +34,7 @@ public class UpAndDown extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpAndDown</title>");  
+            out.println("<title>Servlet </title>");  
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpAndDown at " + request.getContextPath () + "</h1>");
@@ -66,7 +67,20 @@ public class UpAndDown extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String productId = request.getParameter("product_id");
+    int quantity = Integer.parseInt(request.getParameter("qty"));
+    
+    // Lấy giỏ hàng từ session
+    Cart cart = (Cart) request.getSession().getAttribute("cart");
+    
+    // Cập nhật số lượng cho sản phẩm được chỉ định
+    if (cart != null) {
+        cart.updateQuantity(Integer.parseInt(productId), quantity);
+        request.getSession().setAttribute("cart", cart);
+    }
+    
+    // Chuyển hướng về trang giỏ hàng
+    response.sendRedirect("ViewCart");
     }
 
     /** 

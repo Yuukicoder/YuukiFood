@@ -190,7 +190,7 @@
                             </c:forEach>
                             <tr>
                                 <td colspan="7" style="font-weight: bold; font-size: 25px">Total price:</td>
-                                <td style="vertical-align: middle">${total}</td>
+                                <td style="vertical-align: middle">${total_bill}</td>
                             </tr>
                         </tbody>
                     </table>

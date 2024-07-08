@@ -36,10 +36,19 @@ public class CategoryManager extends HttpServlet {
        HttpSession session = request.getSession();
             Object object = session.getAttribute("account");
             User u = (User) object;
+                        if (u.getRoles().getRoleId() == 2) {
+
                 ProductDAO pdao = new ProductDAO();
                 ArrayList<Category> clist = pdao.getCategory();
                 request.setAttribute("clist", clist);
                 request.getRequestDispatcher("managerCategory.jsp").forward(request, response);
+    }
+                            else if(u.getRoles().getRoleId() == 3){
+                                 ProductDAO pdao = new ProductDAO();
+                ArrayList<Category> clist = pdao.getCategory();
+                request.setAttribute("clist", clist);
+                request.getRequestDispatcher("staffManagerCategory.jsp").forward(request, response);
+                            }
     } 
     
 

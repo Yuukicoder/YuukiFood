@@ -62,27 +62,45 @@ public class ManagerOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+      
             String uid = request.getParameter("uid") == null || request.getParameter("uid").isEmpty() ? "0" : request.getParameter("uid");
             String fdate = request.getParameter("fdate") == null ? "1920-05-05" : request.getParameter("fdate");
             String tdate = request.getParameter("tdate") == null ? "3020-05-05" : request.getParameter("tdate");
             BillDAO bDao = new BillDAO();
             HttpSession session = request.getSession();
-
             Object object = session.getAttribute("account");
             User u = (User) object;
-            int uid_num = Integer.parseInt(uid);
-            ArrayList<Bills> ol = bDao.getBillByUserId(uid_num, fdate, tdate);
-            UserDAO udao = new UserDAO();
-            ArrayList<User> userList = udao.getAllUser();
-            request.setAttribute("pl", userList);
-            request.setAttribute("userIdOrder", uid_num);
-            request.setAttribute("ol", ol);
+            if (u.getRoles().getRoleId() == 2) {
+                int uid_num = Integer.parseInt(uid);
+                ArrayList<Bills> ol = bDao.getBillByUserId(uid_num, fdate, tdate);
+                UserDAO udao = new UserDAO();
+                ArrayList<User> userList = udao.getAllUser();
+                request.setAttribute("pl", userList);
+                int bill = 0;
+                for (int i = 0; i < ol.size(); i++) {
+                    bill += (ol.get(i).getPrice() * ol.get(i).getQuantity());
+                }
+                request.setAttribute("total_bill", bill);
+                request.setAttribute("userIdOrder", uid_num);
+                request.setAttribute("ol", ol);
 //        response.getWriter().println(u.getId());
-            request.getRequestDispatcher("managerorder.jsp").forward(request, response);
-        } catch (Exception e) {
-            response.getWriter().print(e);
-        }
+                request.getRequestDispatcher("managerorder.jsp").forward(request, response);
+            } else if (u.getRoles().getRoleId() == 3) {
+                int uid_num = Integer.parseInt(uid);
+                ArrayList<Bills> ol = bDao.getBillByUserId(uid_num, fdate, tdate);
+                UserDAO udao = new UserDAO();
+                ArrayList<User> userList = udao.getAllUser();
+                request.setAttribute("pl", userList);
+                int bill = 0;
+                for (int i = 0; i < ol.size(); i++) {
+                    bill += (ol.get(i).getPrice() * ol.get(i).getQuantity());
+                }
+                request.setAttribute("total_bill", bill);
+                request.setAttribute("userIdOrder", uid_num);
+                request.setAttribute("ol", ol);
+//        response.getWriter().println(u.getId());
+                request.getRequestDispatcher("staffManagerOrder.jsp").forward(request, response);
+            }   
     }
 
     /**

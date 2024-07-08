@@ -12,17 +12,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Category;
-import model.Product;
-import model.User;
 
 /**
  *
  * @author Admin
  */
-public class ManagerProduct extends HttpServlet {
+public class EditProduct extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,25 +29,22 @@ public class ManagerProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                HttpSession session = request.getSession();
-                Object object = session.getAttribute("account");
-            User u = (User) object;
-            if (u.getRoles().getRoleId() == 2) {
-                    ProductDAO pdao = new ProductDAO();
-                    ArrayList<Product> pl = pdao.getAllProduct("", "");
-                    ArrayList<Category> clist = pdao.getCategory();
-                    request.setAttribute("pl", pl);
-                    request.setAttribute("clist", clist);
-                    request.getRequestDispatcher("managerProduct.jsp").forward(request, response);
-            }
-                        else if(u.getRoles().getRoleId() == 3){
-                             ProductDAO pdao = new ProductDAO();
-                    ArrayList<Product> pl = pdao.getAllProduct("", "");
-                    ArrayList<Category> clist = pdao.getCategory();
-                    request.setAttribute("pl", pl);
-                    request.setAttribute("clist", clist);
-                    request.getRequestDispatcher("staffManagerProduct.jsp").forward(request, response);
-                        }
+         try {
+            response.setContentType("text/html;charset=UTF-8");
+            int id = Integer.valueOf(request.getParameter("id"));
+            int cateId = Integer.valueOf(request.getParameter("category"));
+            double price = Double.valueOf(request.getParameter("price"));
+            int stock = Integer.valueOf(request.getParameter("stock"));
+            String img = request.getParameter("img");
+            String descri = request.getParameter("descri");
+            String name = request.getParameter("name");
+            String creDate = request.getParameter("creDate");
+            ProductDAO pdao = new ProductDAO();
+            pdao.UpdateProduct(id, name, price, cateId, stock, creDate, descri, img);
+            response.sendRedirect("./ManagerProduct");
+        } catch (Exception e) {
+            response.sendRedirect("./404.html");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -84,16 +84,12 @@
                                                 </td>
                                                 <td class="product-quantity" data-title="Quantity">
                                                     <div class="quantity-box type1">
-                                                        <form action="UpAndDown">
+                                                        <form action="UpAndDown" method="post">
                                                             <input type="hidden" name="product_id" value="${cart.product.getProductId()}">
-                                                            <c:if test="${quantity == null}">
-                                                                <input type="number" name="qty" value="${cart.getQuantity()}" > <br>
-                                                            </c:if>
-                                                            <c:if test="${quantity != null}">
-                                                                <input type="number" name="qty" value="${quantity}" > <br>
-                                                            </c:if>
-                                                            <input type="submit" value="change quantity">
+                                                            <input type="number" name="qty" value="${cart.getQuantity()}">
+                                                            <input type="submit" value="Change Quantity">
                                                         </form>
+
                                                     </div>
                                                 </td>
                                                 <td class="product-subtotal" data-title="Total">

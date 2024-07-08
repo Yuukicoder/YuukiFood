@@ -61,7 +61,7 @@
             <h1 data-aos="fade-up" style="font-family: Roboto;">Enjoy Your Healthy<br>Delicious Food</h1>
             <p data-aos="fade-up" data-aos-delay="100">We are team of talented designers making websites with Bootstrap</p>
             <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-              <a href="menu.jsp" class="btn-get-started">menu</a>
+              <a href="ViewMenu" class="btn-get-started">menu</a>
               <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
             </div>
           </div>
@@ -879,6 +879,12 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="YuukiFood_chat"
+  agent-id="038a5277-6067-4e77-ad66-8868973dceea"
+  language-code="en"
+></df-messenger>
 </body>
 </html>

@@ -56,7 +56,7 @@ public class UserDAO extends DBConnect {
 
         } catch (Exception e) {
             System.out.println(e);
-        }
+        }  
         return null;
     }
 //  ========================= getUserByEmail ==========================

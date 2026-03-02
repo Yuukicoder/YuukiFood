@@ -27,7 +27,7 @@ public class DBConnect {
         //where StudentDBContext is located in dal package, 
         try {
             String user = "sa";
-            String pass = "12345";
+            String pass = "123";
             String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=YuukiFood;encrypt=false";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);

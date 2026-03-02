@@ -1,7 +1,8 @@
 USE [master]
 GO
 /****** Object:  Database [YuukiFood]    Script Date: 7/3/2024 12:15:12 AM ******/
-CREATE DATABASE [YuukiFood]
+CREATE DATABASE [SwrAssignment]
+Use SwrAssignment
 -- CONTAINMENT = NONE
 -- ON  PRIMARY 
 --( NAME = N'YuukiFood', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\YuukiFood.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
@@ -170,10 +171,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Users](
+Create TABLE [dbo].[User](
 	[user_id] [int] IDENTITY(1,1) NOT NULL,
 	[user_name] [nvarchar](50) NULL,
-	[email] [nvarchar](50) NOT NULL,
 	[password] [nvarchar](50) NOT NULL,
 	[address] [nvarchar](50) NULL,
 	[gender] [bit] NULL,

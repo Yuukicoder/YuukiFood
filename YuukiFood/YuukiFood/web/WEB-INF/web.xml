@@ -115,10 +115,6 @@
         <servlet-class>controller.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegisterController</servlet-name>
-        <servlet-class>controller.RegisterController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminHomePage</servlet-name>
         <servlet-class>controller.AdminHomePage</servlet-class>
     </servlet>
@@ -193,6 +189,10 @@
     <servlet>
         <servlet-name>EditProduct</servlet-name>
         <servlet-class>controller.EditProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginController</servlet-name>
@@ -271,10 +271,6 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterController</servlet-name>
-        <url-pattern>/RegisterController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AdminHomePage</servlet-name>
         <url-pattern>/AdminHomePage</url-pattern>
     </servlet-mapping>
@@ -349,5 +345,9 @@
     <servlet-mapping>
         <servlet-name>EditProduct</servlet-name>
         <url-pattern>/EditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 </web-app>

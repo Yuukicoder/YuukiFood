@@ -1,111 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package controller;
 
-import DAO.SendMail;
 import DAO.UserDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Roles;
+import jakarta.servlet.http.*;
+import java.io.IOException;
 import model.User;
 
-/**
- *
- * @author Admin
- */
 public class RegisterController extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-     try {
-            HttpSession session = request.getSession();
+            throws ServletException, IOException {
+
+        try {
+            request.setCharacterEncoding("UTF-8");
+
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
-            String gender = request.getParameter("gender");
+            String genderRaw = request.getParameter("gender");
             String pass = request.getParameter("pass");
-            UserDAO udao = new UserDAO();
-            User checkExist = udao.getUserByEmail(email);
-            if (checkExist == null) {
-                udao.insertUser(name, email, phone, address, pass, Integer.valueOf(gender));
-                User u = new User(name, email, pass, address, phone, new Roles(1));
-                SendMail sm = new SendMail();
-                sm.send(email, "New Register", "Welcome to ours system!");
-                response.sendRedirect("./HomePage");
-            } else {
-                request.setAttribute("messregis", "Email already exist in system!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+
+            // ===== VALIDATE =====
+            if (name == null || email == null || pass == null ||
+                name.trim().isEmpty() || email.trim().isEmpty() || pass.trim().isEmpty()) {
+
+                request.setAttribute("messregis", "Please fill all required fields!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
             }
 
-        } catch (Exception e) {
-            request.setAttribute("messregis", "Invalid input.Please Try again!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            int gender = 1; // default Male
+            if (genderRaw != null) {
+                gender = Integer.parseInt(genderRaw);
+            }
 
+            UserDAO udao = new UserDAO();
+
+            // ===== CHECK EMAIL EXIST =====
+            User checkExist = udao.getUserByEmail(email.trim());
+
+            if (checkExist != null) {
+                request.setAttribute("messregis", "Email already exists!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
+            }
+
+            // ===== INSERT USER =====
+            udao.insertUser(
+                    name.trim(),
+                    email.trim(),
+                    phone,
+                    address,
+                    pass.trim(),
+                    gender
+            );
+
+            // ===== SUCCESS =====
+            response.sendRedirect("login.jsp");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("messregis", "Register failed! Try again.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
-
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

@@ -152,5 +152,41 @@ public class OrderDAO extends DBConnect{
         } catch (Exception e) {
         }
     }
+//                        ==========================================================
+                        public void updateStatusOrderDone(int status, int id) {
+    try {
+
+        String sql = "update OrderDetail set status_id = ? where order_id = ?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, status);
+        ps.setInt(2, id);
+
+        ps.executeUpdate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+//                  ========================== lấy order id mới tạo =====================      
+                        public int getLastOrderId() {
+
+    int id = 0;
+
+    try {
+        String sql = "select top 1 order_id from [Order] order by order_id desc";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            id = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return id;
+}
 
 }

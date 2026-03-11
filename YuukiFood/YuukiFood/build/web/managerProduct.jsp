@@ -78,6 +78,18 @@
 
                     <div class="col-md-12">
                         <h1 style="text-align: center;">Manager Product</h1>
+                        <form action="ManagerProduct" method="get" style="margin:20px 0; display:flex; gap:10px;">
+    <input type="text" class="form-control" name="search"
+           placeholder="Search product name..."
+           value="${param.search}" style="width:300px;">
+    
+    <button type="submit" class="btn btn-primary">Search</button>
+
+    <a href="ManagerProduct" class="btn btn-default">Reset</a>
+</form>
+           
+           
+           
                         <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModalAddNew">Add Product</button>
                         <!-- Modal -->
                         <div class="modal fade" id="myModalAddNew" role="dialog">

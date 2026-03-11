@@ -38,8 +38,10 @@ public class ManagerProduct extends HttpServlet {
                 Object object = session.getAttribute("account");
             User u = (User) object;
             if (u.getRoles().getRoleId() == 2) {
+                String search = request.getParameter("search");
+                if(search == null) search = "";
                     ProductDAO pdao = new ProductDAO();
-                    ArrayList<Product> pl = pdao.getAllProduct("", "");
+                    ArrayList<Product> pl = pdao.getAllProduct("", search);
                     ArrayList<Category> clist = pdao.getCategory();
                     request.setAttribute("pl", pl);
                     request.setAttribute("clist", clist);

@@ -160,7 +160,33 @@ public class ProductDAO extends DBConnect{
         } catch (Exception e) {
         }
     }
-
+    public ArrayList<Product> SearchProduct(String name){
+          ArrayList<Product> list = new ArrayList<>();
+        String sql = "SELECT p.*, c.category_id, c.category_name\n" +
+"FROM Product p\n" +
+"JOIN Category c ON p.category_id = c.category_id\n" +
+"WHERE p.product_name LIKE ? ";
+         try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                  Category c = new Category(
+                    rs.getInt("category_id"),
+                    rs.getString("category_name")
+            );
+                list.add(new Product(rs.getInt("productId"),
+                        rs.getString("productName"),
+                        rs.getDouble("price"),
+                        rs.getInt("stock"),
+                        c,
+                        rs.getString("img"),
+                        rs.getString("description"),
+                        rs.getDate("createDate")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
     public void AddProduct(String name, double price, int cateId, int stock, String descri, String img) {
         String sql = "insert into [Product] ([product_name],[price],[stock],[category_id],[img],[description],[create_date]) values (?,?,?,?,?,?, getdate())";
         try {

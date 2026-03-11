@@ -5,19 +5,41 @@
         <group>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/StaffDashboard.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/DBConnect.java</file>
-            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/SendMail.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/model/Cart.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/managerProduct.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/adminHome.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/BillDAO.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/UserDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/login.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/model/Order.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/manageruser.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ViewOrdered.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/Dashboard.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ViewCart.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/StaffHomePage.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/model/User.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/userHomePage.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ManagerUser.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/managerorder.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/register.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/CheckAdminRole.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ProductList.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/model/Bills.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/home.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/Checkout.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/DBConnect.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/Statistics.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/SendMail.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/login.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/DAO/ProductDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/DeleteCartItem.java</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/header.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/RegisterController.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/dashboard.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/checkout.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/filter/AdminFilter.java</file>
             <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/loginController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/register.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/web/Statistic.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/YuukiFood/YuukiFood/YuukiFood/src/java/controller/ManagerProduct.java</file>
         </group>
     </open-files>
 </project-private>

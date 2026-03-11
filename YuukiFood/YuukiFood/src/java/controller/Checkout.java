@@ -79,10 +79,17 @@ public class Checkout extends HttpServlet {
         Object object = session.getAttribute("account");
         Object object1 = session.getAttribute("cart");
         String notes = request.getParameter("notes");
+         String action = request.getParameter("action");
         User u = (User) object;
         Cart cart = (Cart) object1;
         OrderDAO odao = new OrderDAO();
-        odao.insertOrder(u, cart, notes);
+           odao.insertOrder(u, cart, notes);
+
+    // nếu thanh toán online -> đổi status
+    if ("online".equals(action)) {
+        int orderId = odao.getLastOrderId();
+        odao.updateStatusOrderDone(2, orderId);
+    }
         session.removeAttribute("cart");
         response.sendRedirect("HomePage");
     }

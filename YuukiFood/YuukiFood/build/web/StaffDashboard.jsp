@@ -89,12 +89,12 @@
             </div>
 
             <!-- PROFIT -->
-            <div class="col-md-3">
+<!--            <div class="col-md-3">
                 <div class="card-box bg-red text-center">
                     <h4>Total Profit</h4>
                     <h2>${profit} $</h2>
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>

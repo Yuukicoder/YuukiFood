@@ -91,7 +91,15 @@
                                         <p class="form-row">
                                             <b>Shipping notes: </b> <input name="notes" type="text" style="width: 60%;" >
                                             <button style="float: right; background-color:#d53535;color: white; " type="submit" name="btn-sbmt" class="btn">Order</button>
+                                              <button type="submit"
+                name="action"
+                value="online"
+                class="btn"
+                style="background-color:#d53535;color:white;">
+            Thanh toán Online
+        </button>
                                         </p>
+                                        
                                     </form>
                                 </div>
                             </div>

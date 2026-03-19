@@ -19,60 +19,80 @@ import java.util.logging.Logger;
  */
 public class BillDAO extends DBConnect {
 
-    public ArrayList<Bills> getBillByUserId(int user_id, String fdate, String tdate) {
-        ArrayList<Bills> list = new ArrayList<>();
-        if (fdate.isEmpty() || fdate == null) {
-            fdate = "1990-01-01";
-        }
-        if (tdate.isEmpty() || tdate == null) {
-            tdate = "2990-01-01";
-        }
-        try {
-            PreparedStatement st;
-            if (user_id == 0) {
-                String sql = """
-             select od.detail_id, od.order_id, u.user_name, p.product_name, od.price, od.quantity, p.img, o.order_date, s.status, o.total  from [YuukiFood].[dbo].[Order] as o
-             join [YuukiFood].[dbo].[OrderDetail] as od on o.order_id = od.order_id
-             join [YuukiFood].[dbo].[Users] as u on o.user_id = u.user_id
-             join [YuukiFood].[dbo].[Product] as p on od.product_id = p.product_id
-             join [YuukiFood].[dbo].[Status] as s on od.status_id = s.status_id
-             where o.order_date between ? and ?""";
-                st = connection.prepareStatement(sql);
-                st.setDate(1, java.sql.Date.valueOf(fdate));
-                st.setDate(2, java.sql.Date.valueOf(tdate));
-            } else {
-                String sql = """
-             select od.detail_id,od.order_id, u.user_name, p.product_name, od.price, od.quantity, p.img, o.order_date, s.status, o.total  from [YuukiFood].[dbo].[Order] as o
-                          join [YuukiFood].[dbo].[OrderDetail] as od on o.order_id = od.order_id
-                          join [YuukiFood].[dbo].[Users] as u on o.user_id = u.user_id
-                          join [YuukiFood].[dbo].[Product] as p on od.product_id = p.product_id
-                          join [YuukiFood].[dbo].[Status] as s on od.status_id = s.status_id
-                          where u.user_id = ?  and o.order_date between ? and ?""";
-                st = connection.prepareStatement(sql);
-                st.setInt(1, user_id);
-                st.setDate(2, java.sql.Date.valueOf(fdate));
-                st.setDate(3, java.sql.Date.valueOf(tdate));
-            }
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Bills b = new Bills();
-                b.setDetail_id(rs.getInt("detail_id"));
-                b.setUser_name(rs.getString("user_name"));
-                b.setProduct_name(rs.getString("product_name"));
-                b.setPrice(rs.getDouble("price"));
-                b.setQuantity(rs.getInt("quantity"));
-                b.setImg(rs.getString("img"));
-                b.setOrder_date(rs.getDate("order_date"));
-                b.setStatus(rs.getString("status"));
-                b.setTotal(rs.getDouble("total"));
-                b.setOrder_id(rs.getInt("order_id"));
-                list.add(b);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return list;
+   public ArrayList<Bills> getBillByUserId(int user_id, String fdate, String tdate) {
+    ArrayList<Bills> list = new ArrayList<>();
+
+    // ✅ fix null check
+    if (fdate == null || fdate.isEmpty()) {
+        fdate = "1990-01-01";
     }
+    if (tdate == null || tdate.isEmpty()) {
+        tdate = "2990-01-01";
+    }
+
+    try {
+        PreparedStatement st;
+
+        if (user_id == 0) {
+            String sql = """
+                select od.detail_id, od.order_id, u.user_name, p.product_name, 
+                       od.price, od.quantity, p.img, o.order_date, s.status, o.total  
+                from [YuukiFood].[dbo].[Order] as o
+                join [YuukiFood].[dbo].[OrderDetail] as od on o.order_id = od.order_id
+                join [YuukiFood].[dbo].[Users] as u on o.user_id = u.user_id
+                join [YuukiFood].[dbo].[Product] as p on od.product_id = p.product_id
+                join [YuukiFood].[dbo].[Status] as s on od.status_id = s.status_id
+                where o.order_date between ? and ?
+                ORDER BY o.order_date DESC, o.order_id DESC
+            """;
+
+            st = connection.prepareStatement(sql);
+            st.setDate(1, java.sql.Date.valueOf(fdate));
+            st.setDate(2, java.sql.Date.valueOf(tdate));
+
+        } else {
+            String sql = """
+                select od.detail_id, od.order_id, u.user_name, p.product_name, 
+                       od.price, od.quantity, p.img, o.order_date, s.status, o.total  
+                from [YuukiFood].[dbo].[Order] as o
+                join [YuukiFood].[dbo].[OrderDetail] as od on o.order_id = od.order_id
+                join [YuukiFood].[dbo].[Users] as u on o.user_id = u.user_id
+                join [YuukiFood].[dbo].[Product] as p on od.product_id = p.product_id
+                join [YuukiFood].[dbo].[Status] as s on od.status_id = s.status_id
+                where u.user_id = ? and o.order_date between ? and ?
+                ORDER BY o.order_date DESC, o.order_id DESC
+            """;
+
+            st = connection.prepareStatement(sql);
+            st.setInt(1, user_id);
+            st.setDate(2, java.sql.Date.valueOf(fdate));
+            st.setDate(3, java.sql.Date.valueOf(tdate));
+        }
+
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            Bills b = new Bills();
+            b.setDetail_id(rs.getInt("detail_id"));
+            b.setUser_name(rs.getString("user_name"));
+            b.setProduct_name(rs.getString("product_name"));
+            b.setPrice(rs.getDouble("price"));
+            b.setQuantity(rs.getInt("quantity"));
+            b.setImg(rs.getString("img"));
+            b.setOrder_date(rs.getDate("order_date"));
+            b.setStatus(rs.getString("status"));
+            b.setTotal(rs.getDouble("total"));
+            b.setOrder_id(rs.getInt("order_id"));
+
+            list.add(b);
+        }
+
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    return list;
+}
 
     public void addStatistics(int order_id, String product_id, float price, int quantity) {
         String sql = "INSERT INTO [Statistics] (order_id, product_id, price, quantity) VALUES (?, ?, ?, ?)";

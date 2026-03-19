@@ -1,78 +1,107 @@
-<%-- 
-    Document   : UpdateUser
-    Created on : Jul 1, 2024, 2:30:35 AM
-    Author     : 84777
---%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <%@include file="CheckAdminRole.jsp" %>
-    <body>
-        <div class="d-flex justify-content-center">
-            <div>
-                <h1>Update person</h1>
-                <form action="UpdateUser" method="post" class="form-min-width">
-                    <input type="hidden" name="user_id" value="${user_id}">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
 
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="username" placeholder="username" value="${userUpdate.userName}" required>
-                    </div>
+<%@include file="CheckAdminRole.jsp" %>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" id="email" placeholder="email" value="${userUpdate.email}" required>
-                    </div>
+<body style="background-color: #f5f6fa;">
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="password"  required>
-                    </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" class="form-control" id="address" value="${userUpdate.address}" required>
-                    </div>
+            <!-- CARD -->
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header text-center bg-primary text-white rounded-top-4">
+                    <h3 class="mb-0">Update User</h3>
+                </div>
 
-                    <div class="mb-3">
-                        <label for="gender" class="form-label">Gender: </label><br>
-                        <input type="radio" id="male" name="gender" value="Male" ${userUpdate.gender == "Male" ? "checked" : ""}>
-                        <label for="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="Female" ${userUpdate.gender == "Female" ? "checked" : ""}>
-                        <label for="female">Female</label>
-                    </div>
+                <div class="card-body p-4">
 
-                    <div class="mb-3">
-                        <label for="role" class="form-label">Role</label>
-                        <select name="role" class="form-select">
-                            <c:forEach var="role" items="${roleList}">
-                                <option value="${role.roleId}" ${userUpdate.roles.roleId == role.roleId ? "selected" : ""}>
-                                    ${role.roleName}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                    <form action="UpdateUser" method="post">
+                        <input type="hidden" name="user_id" value="${user_id}">
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Username</label>
+                            <input type="text" name="username" class="form-control" 
+                                   value="${userUpdate.userName}" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input type="email" name="email" class="form-control" 
+                                   value="${userUpdate.email}" required>
+                        </div>
 
 
 
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Address</label>
+                            <input type="text" name="address" class="form-control" 
+                                   value="${userUpdate.address}" required>
+                        </div>
 
+                        <!-- Gender -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" value="Male"
+                                       ${userUpdate.gender == "Male" ? "checked" : ""}>
+                                <label class="form-check-label">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" value="Female"
+                                       ${userUpdate.gender == "Female" ? "checked" : ""}>
+                                <label class="form-check-label">Female</label>
+                            </div>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="phone" placeholder="phone" value="${userUpdate.phone}"  required>
-                    </div>
+                        <!-- Role -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Role</label>
+                            <select name="role" class="form-select">
+                                <c:forEach var="role" items="${roleList}">
+                                    <option value="${role.roleId}" 
+                                        ${userUpdate.roles.roleId == role.roleId ? "selected" : ""}>
+                                        ${role.roleName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Phone</label>
+                            <input type="text" name="phone" class="form-control" 
+                                   value="${userUpdate.phone}" required>
+                        </div>
 
-                    <input type="submit" class="btn btn-primary" value="Update" />
-                </form>
+                        <!-- BUTTON -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                                Update User
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
+
         </div>
-    </body>
+    </div>
+</div>
+
+</body>
 </html>

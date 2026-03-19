@@ -84,25 +84,30 @@ public class UpdateUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("user_id"));
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String address = request.getParameter("address");
-        Boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
-        int role = Integer.parseInt(request.getParameter("role"));
-        String phone = request.getParameter("phone");
-        
-        
-        UserDAO userDAO = new UserDAO();
-        userDAO.UpdateAll(username, password, email, phone, address, gender, role, id);
-        
-        request.setAttribute("msg", "Updated!"); 
-        request.getRequestDispatcher("ManagerUser").forward(request, response);
-    }
+   @Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+
+    int id = Integer.parseInt(request.getParameter("user_id"));
+    String username = request.getParameter("username");
+    String email = request.getParameter("email");
+    String address = request.getParameter("address");
+
+    // ✅ FIX GENDER
+    String genderRaw = request.getParameter("gender");
+    Boolean gender = "Male".equals(genderRaw);
+
+    int role = Integer.parseInt(request.getParameter("role"));
+    String phone = request.getParameter("phone");
+
+    UserDAO userDAO = new UserDAO();
+
+    // 🔥 CHỈ update thông tin KHÔNG có password
+    userDAO.updateWithoutPassword(username, email, phone, address, gender, role, id);
+
+    request.setAttribute("msg", "Updated!");
+    request.getRequestDispatcher("ManagerUser").forward(request, response);
+}
 
     /** 
      * Returns a short description of the servlet.

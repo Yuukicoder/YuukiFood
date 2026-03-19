@@ -80,14 +80,22 @@ public class Cart {
         return false;
     }
 //    =========================== addItem ========================
-    public void addItem(CartItem newItem){
-        if(checkExist(newItem.getProduct().getProductId())){
-            CartItem oldItem = getItemById(newItem.getProduct().getProductId());
-            oldItem.setQuantity(oldItem.getQuantity() + newItem.getQuantity());
-        }else{
-            items.add(newItem);
-        }
+public void addItem(CartItem newItem){
+    if(checkExist(newItem.getProduct().getProductId())){
+        CartItem oldItem = getItemById(newItem.getProduct().getProductId());
+        
+        // cộng số lượng
+        oldItem.setQuantity(oldItem.getQuantity() + newItem.getQuantity());
+        
+        // 🔥 đưa item lên đầu
+        items.remove(oldItem);
+        items.add(0, oldItem);
+        
+    }else{
+        // 🔥 thêm mới vào đầu list
+        items.add(0, newItem);
     }
+}
 //    ========================= removeItem ======================
     public void removeItem(int id){
         if(getItemById(id)!= null){
@@ -104,13 +112,18 @@ public class Cart {
     }
     // ====================== updateQuantity ======================
     public void updateQuantity(int productId, int quantity) {
-        CartItem item = getItemById(productId);
-        if (item != null) {
-            if (quantity > 0) {
-                item.setQuantity(quantity);
-            } else {
-                items.remove(item);
-            }
+    CartItem item = getItemById(productId);
+    if (item != null) {
+        if (quantity > 0) {
+            item.setQuantity(quantity);
+
+            // 🔥 đưa lên đầu sau khi update
+            items.remove(item);
+            items.add(0, item);
+
+        } else {
+            items.remove(item);
         }
     }
+}
 }

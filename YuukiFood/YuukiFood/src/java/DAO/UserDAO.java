@@ -206,4 +206,21 @@ public class UserDAO extends DBConnect {
 //            System.out.println(u.getUserName()+ ", " + u.getPassword() + ", " + u.getRoles().getRoleName());
 //        }
 //    }
+    public void updateWithoutPassword(String username, String email, String phone,
+                                  String address, Boolean gender, int role, int id) {
+    String sql = "UPDATE Users SET user_name=?, email=?, phone=?, address=?, gender=?, role_id=? WHERE user_id=?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, username);
+        ps.setString(2, email);
+        ps.setString(3, phone);
+        ps.setString(4, address);
+        ps.setBoolean(5, gender);
+        ps.setInt(6, role);
+        ps.setInt(7, id);
+        ps.executeUpdate();
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+}
 }
